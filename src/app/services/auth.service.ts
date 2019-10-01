@@ -20,7 +20,6 @@ export class AuthService {
 		private afAuth: AngularFireAuth,
 		private afs: AngularFirestore,
 		private router: Router,
-  // tslint:disable-next-line: indent
   ) {
 	this.user$ = this.afAuth.authState.pipe(
 		switchMap(user => {
