@@ -34,7 +34,10 @@ const CREDENTIALS = {
 	providers: [
 		StatusBar,
 		SplashScreen,
-		{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+		{
+			provide: RouteReuseStrategy,
+			useClass: IonicRouteStrategy
+		}],
 	bootstrap: [AppComponent],
 })
 export class AppModule { }
