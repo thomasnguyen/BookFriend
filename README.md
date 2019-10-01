@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=373px height=392px src="https://raw.githubusercontent.com/thomasnguyen/BookFriend/master/repoAssets/preview.png" alt="Project logo"></a>
+ <img width=375px height=812px src="https://raw.githubusercontent.com/thomasnguyen/BookFriend/master/repoAssets/preview.png" alt="Project logo"></a>
 </p>
 
 <h3 align="center">BookFriend</h3>
