@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AuthService } from './services/auth.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +24,10 @@ export class AppComponent {
     this.initializeApp();
   }
 
+  isLoggedIn() {
+    return this.authSvc.user$.pipe(first());
+  }
+
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
@@ -36,7 +41,17 @@ export class AppComponent {
         }
 
         // else redirect to dashboard
+        this.redirectOnAuthState();
       });
     });
+  }
+
+  async redirectOnAuthState() {
+    const user = await this.isLoggedIn()
+    if (user) {
+      // do something
+    } else {
+      this.router.navigate(['/welcome']);
+    }
   }
 }
