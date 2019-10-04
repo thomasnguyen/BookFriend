@@ -1,9 +1,15 @@
-<div class="container">
-  <div class="logo"></div>
-  <div class="login-block">
-    <button>Login with Google</button>
-    <div class="login-with-email">
-      Or continue with email
+<div class="background">
+  <div class=container>
+    <div class="logo">
+      <img class='logo-med' src='../../assets/logo-med.png' />
+      <h1><strong>Book</strong>Friends</h1>
+      <h3>Track your reading</h3>
+    </div>
+    <div class="login-block">
+      <button class="btn-sso">LOGIN WITH GOOGLE</button>
+      <div class="login-with-email" (click)="onEmailLogin()">
+        Or continue with email
+      </div>
     </div>
   </div>
 </div>
