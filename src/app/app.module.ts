@@ -15,6 +15,7 @@ import { SplashComponent } from './splash/splash.component';
 import { AuthModule } from './auth/auth.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { StorageModule } from '@ngx-pwa/local-storage';
+import { NavComponent } from './nav/nav.component';
 
 const CREDENTIALS = {
 	apiKey: 'AIzaSyAUp4HpskqbGMZuXmh2y4G_iASr6bDuEVU',
@@ -31,7 +32,8 @@ const CREDENTIALS = {
 	declarations: [
 		AppComponent,
 		SplashComponent,
-		DashboardComponent],
+		DashboardComponent,
+		NavComponent],
 	entryComponents: [],
 	imports: [
 		BrowserModule,
