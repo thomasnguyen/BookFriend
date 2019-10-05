@@ -7,8 +7,6 @@ import { RouterModule } from '@angular/router';
 import { AuthComponent } from './auth.component';
 import { AuthLoginComponent } from './auth-login/auth-login.component';
 
-
-
 @NgModule({
   declarations: [
     AuthComponent,

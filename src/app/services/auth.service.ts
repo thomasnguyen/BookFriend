@@ -6,6 +6,7 @@ import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { auth } from 'firebase';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { StorageMap } from '@ngx-pwa/local-storage';
 
 import { User } from '../models/user.model';
 
@@ -19,12 +20,15 @@ export class AuthService {
 	constructor(
 		private afAuth: AngularFireAuth,
 		private afs: AngularFirestore,
-		private router: Router,
+    private router: Router,
+    private storage: StorageMap,
   ) {
 	this.user$ = this.afAuth.authState.pipe(
-		switchMap(user => {
+    switchMap(user => {
+      //console.log(this.afs.doc<User>('users/$user.uid').valueChanges());
+
         if (user) {
-          return this.afs.doc<User>('users/$user.uid').valueChanges();
+          return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
         } else {
           return of(null);
         }
@@ -35,8 +39,9 @@ export class AuthService {
   async googleSignIn() {
     const provider = new auth.GoogleAuthProvider();
     const credential = await this.afAuth.auth.signInWithPopup(provider);
-    console.log(credential);
-    return this.updateUserData(credential.user);
+    
+    
+    return this.updateUserData(credential.user, credential.additionalUserInfo.isNewUser);
   }
 
 
@@ -45,7 +50,7 @@ export class AuthService {
     return this.router.navigate(['/']);
   }
 
-  private updateUserData(user) {
+  private updateUserData(user, firstTimeUser: boolean) {
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
 
     const data: User = {
@@ -55,6 +60,14 @@ export class AuthService {
       avatar: user.photoURL,
     };
 
+    // route to dashboard;
+    if (firstTimeUser) {
+      // route to onboarding
+    } else {
+      this.router.navigate(['dashboard']);
+    }
+
+    this.storage.set('currentUser', data).subscribe(() => {});
     return userRef.set(data, { merge: true });
   }
 }

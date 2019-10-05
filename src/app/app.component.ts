@@ -46,6 +46,8 @@ export class AppComponent {
             this.router.navigate(['/welcome']);
           };
 
+        } else {
+          this.router.navigate(['/dashboard']);
         }
 
         // else redirect to dashboard

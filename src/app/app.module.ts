@@ -13,6 +13,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SplashComponent } from './splash/splash.component';
 import { AuthModule } from './auth/auth.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { StorageModule } from '@ngx-pwa/local-storage';
 
 const CREDENTIALS = {
 	apiKey: 'AIzaSyAUp4HpskqbGMZuXmh2y4G_iASr6bDuEVU',
@@ -28,7 +30,8 @@ const CREDENTIALS = {
 @NgModule({
 	declarations: [
 		AppComponent,
-		SplashComponent],
+		SplashComponent,
+		DashboardComponent],
 	entryComponents: [],
 	imports: [
 		BrowserModule,
@@ -37,6 +40,7 @@ const CREDENTIALS = {
 		AngularFireModule.initializeApp(CREDENTIALS),
 		AngularFireAuthModule,
 		AngularFirestoreModule,
+		StorageModule.forRoot({ IDBNoWrap: true }),
 		
 		// AuthModule,
 	],
@@ -49,4 +53,5 @@ const CREDENTIALS = {
 		}],
 	bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {
+ }

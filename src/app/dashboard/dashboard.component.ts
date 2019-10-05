@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { StorageMap } from '@ngx-pwa/local-storage';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
+  currentUser: User;
+  constructor(
+    private storage: StorageMap,
+  ) { }
 
-  constructor() { }
-
-  ngOnInit() {}
+  ngOnInit() {
+    this.storage.get('currentUser').subscribe((user: User) => {
+      // console.log(user);
+      this.currentUser = user;
+    });
+  }
 
 }
