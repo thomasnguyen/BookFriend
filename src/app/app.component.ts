@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Platform } from '@ionic/angular';
 
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -15,6 +15,7 @@ import { first } from 'rxjs/operators';
 })
 export class AppComponent {
   constructor(
+    private route: ActivatedRoute,
     private authSvc: AuthService,
     private platform: Platform,
     private router: Router,
@@ -36,8 +37,15 @@ export class AppComponent {
       // get auth state
       this.authSvc.user$.subscribe((res) => {
         // if state dne then redirect to splash
+        // if they are in these special sites then thats okay
         if (!res) {
-          this.router.navigate(['/welcome']);
+          const noAuthRoutes = ['welcome', 'auth'];
+          const currRoute = this.router.routerState.snapshot.root.firstChild.routeConfig.path;
+          // console.log(this.router.routerState.snapshot.root.firstChild.routeConfig.path);
+          if (!noAuthRoutes.includes(currRoute)) {
+            this.router.navigate(['/welcome']);
+          };
+
         }
 
         // else redirect to dashboard

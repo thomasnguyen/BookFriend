@@ -12,6 +12,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SplashComponent } from './splash/splash.component';
+import { AuthModule } from './auth/auth.module';
 
 const CREDENTIALS = {
 	apiKey: 'AIzaSyAUp4HpskqbGMZuXmh2y4G_iASr6bDuEVU',
@@ -35,7 +36,10 @@ const CREDENTIALS = {
 		AppRoutingModule,
 		AngularFireModule.initializeApp(CREDENTIALS),
 		AngularFireAuthModule,
-		AngularFirestoreModule],
+		AngularFirestoreModule,
+		
+		// AuthModule,
+	],
 	providers: [
 		StatusBar,
 		SplashScreen,

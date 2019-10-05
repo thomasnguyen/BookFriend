@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -6,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent implements OnInit {
+  step: string;
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+     // get param
+    // if (this.router.queryParams)
+    this.route.queryParams.subscribe(queryParams => {
+      this.step = queryParams['step'];
+    });
+  }
+
 
 }

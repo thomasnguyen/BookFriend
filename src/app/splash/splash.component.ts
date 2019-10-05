@@ -24,7 +24,11 @@ export class SplashComponent implements OnInit {
 
   onEmailLogin(): void {
     // routes to auth-email
-    this.router.navigate(['/login']);
+    this.router.navigate(['/auth'], {
+      queryParams: {
+        step: 'login',
+      }
+    });
   }
 
 }
