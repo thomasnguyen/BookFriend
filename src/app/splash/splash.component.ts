@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-splash',
@@ -9,6 +10,7 @@ import { Router } from '@angular/router';
 export class SplashComponent implements OnInit {
 
   constructor(
+    private authSvc: AuthService,
     private router: Router,
   ) { }
 
@@ -20,6 +22,7 @@ export class SplashComponent implements OnInit {
 
   onGoogleSSO(): void{
     // inits google auth
+    this.authSvc.googleSignIn();
   }
 
   onEmailLogin(): void {
