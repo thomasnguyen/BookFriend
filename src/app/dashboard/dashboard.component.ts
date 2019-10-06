@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.title.setTitle('BookFriends - Dashboard');
+    this.title.setTitle('BookFriends - Dashboard'); 
     this.storage.get('currentUser').subscribe((user: User) => {
       // console.log(user);
       this.currentUser = user;

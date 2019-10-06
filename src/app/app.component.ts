@@ -47,6 +47,8 @@ export class AppComponent {
           };
 
         } else {
+          // get books
+          // this.bookSvc.get
           this.router.navigate(['/dashboard']);
         }
 
