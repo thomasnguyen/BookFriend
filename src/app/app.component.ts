@@ -7,6 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AuthService } from './services/auth.service';
 import { first } from 'rxjs/operators';
+import { BookShelfService } from './services/bookshelf.service';
 
 @Component({
   selector: 'app-root',
@@ -15,8 +16,8 @@ import { first } from 'rxjs/operators';
 })
 export class AppComponent {
   constructor(
-    private route: ActivatedRoute,
     private authSvc: AuthService,
+    private bookShelfSvc: BookShelfService,
     private platform: Platform,
     private router: Router,
     private splashScreen: SplashScreen,
@@ -35,10 +36,10 @@ export class AppComponent {
       this.splashScreen.hide();
 
       // get auth state
-      this.authSvc.user$.subscribe((res) => {
+      this.authSvc.user$.subscribe((user) => {
         // if state dne then redirect to splash
         // if they are in these special sites then thats okay
-        if (!res) {
+        if (!user) {
           const noAuthRoutes = ['welcome', 'auth'];
           const currRoute = this.router.routerState.snapshot.root.firstChild.routeConfig.path;
           // console.log(this.router.routerState.snapshot.root.firstChild.routeConfig.path);
@@ -49,12 +50,19 @@ export class AppComponent {
         } else {
           // get books
           // this.bookSvc.get
+          this.getBookShelf(user.uid);
           this.router.navigate(['/dashboard']);
         }
 
         // else redirect to dashboard
         this.redirectOnAuthState();
       });
+    });
+  }
+
+  getBookShelf(userID: string): void {
+    this.bookShelfSvc.getBookshelf(userID).subscribe((bookShelf: any[]) => {
+      // set to indexedDB
     });
   }
 

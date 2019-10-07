@@ -11,8 +11,8 @@ export class BookShelfService {
     public db: AngularFirestore,
   ) { }
 
-  getBookshelf(_uid: string): Observable<any[]> {
-    return this.db.collection(`users/${_uid}/userBooks`,
+  getBookshelf(userID: string): Observable<any[]> {
+    return this.db.collection(`users/${userID}/userBooks`,
       ref => ref.orderBy('updatedDate', 'desc')).valueChanges();
   }
 }
