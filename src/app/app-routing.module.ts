@@ -1,18 +1,25 @@
-import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 
-import { SplashComponent } from './splash/splash.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { SplashComponent } from "./splash/splash.component";
+import { DashboardComponent } from "./dashboard/dashboard.component";
+import { BookShelfComponent } from "./book-shelf/book-shelf.component";
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: "", redirectTo: "home", pathMatch: "full" },
 
-  { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomePageModule) },
-  { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
+  {
+    path: "home",
+    loadChildren: () => import("./home/home.module").then(m => m.HomePageModule)
+  },
+  {
+    path: "auth",
+    loadChildren: () => import("./auth/auth.module").then(m => m.AuthModule)
+  },
 
-  { path: 'welcome', component: SplashComponent },
-  { path: 'dashboard', component: DashboardComponent },
-
+  { path: "welcome", component: SplashComponent },
+  { path: "dashboard", component: DashboardComponent },
+  { path: "bookshelf", component: BookShelfComponent }
 ];
 
 @NgModule({
@@ -21,4 +28,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

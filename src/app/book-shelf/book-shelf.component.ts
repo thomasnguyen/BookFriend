@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { StorageMap } from "@ngx-pwa/local-storage";
 import { BookShelfService } from "../services/bookshelf.service";
 import { User } from "../models/user.model";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-book-shelf",
@@ -12,6 +13,7 @@ export class BookShelfComponent implements OnInit {
   currentUser: User;
   bookshelf = [];
   constructor(
+    private router: Router,
     private storage: StorageMap,
     private bookShelfSvc: BookShelfService
   ) {}
@@ -24,5 +26,9 @@ export class BookShelfComponent implements OnInit {
         this.bookshelf = this.bookshelf;
       });
     });
+  }
+
+  redirectTo(location: string): void {
+    this.router.navigate([location]);
   }
 }
