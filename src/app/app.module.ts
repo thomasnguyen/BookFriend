@@ -17,6 +17,7 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
 import { StorageModule } from "@ngx-pwa/local-storage";
 import { NavComponent } from "./nav/nav.component";
 import { BookShelfComponent } from "./book-shelf/book-shelf.component";
+import { BookLibraryComponent } from "./book-library/book-library.component";
 
 const CREDENTIALS = {
   apiKey: "AIzaSyAUp4HpskqbGMZuXmh2y4G_iASr6bDuEVU",
@@ -35,7 +36,8 @@ const CREDENTIALS = {
     SplashComponent,
     DashboardComponent,
     BookShelfComponent,
-    NavComponent
+    NavComponent,
+    BookLibraryComponent
   ],
   entryComponents: [],
   imports: [

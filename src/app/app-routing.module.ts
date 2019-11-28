@@ -4,6 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 import { SplashComponent } from "./splash/splash.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { BookShelfComponent } from "./book-shelf/book-shelf.component";
+import { BookLibraryComponent } from "./book-library/book-library.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
@@ -19,7 +20,7 @@ const routes: Routes = [
 
   { path: "welcome", component: SplashComponent },
   { path: "dashboard", component: DashboardComponent },
-  { path: "bookshelf", component: BookShelfComponent }
+  { path: "library", component: BookLibraryComponent }
 ];
 
 @NgModule({
